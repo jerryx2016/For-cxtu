@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html lang="my">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sorry My Love 🐱</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: sans-serif;
+  background: linear-gradient(135deg, #ffe0ec, #ffd1dc, #fff0f5);
+}
+
+.card {
+  width: 90%;
+  max-width: 390px;
+  padding: 30px 22px;
+  text-align: center;
+  background: rgba(255,255,255,0.88);
+  border-radius: 30px;
+  box-shadow: 0 10px 35px #e99ab566;
+  position: relative;
+  z-index: 2;
+}
+
+.cat {
+  font-size: 90px;
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  50% { transform: translateY(-12px); }
+}
+
+h2 {
+  color: #ff5c93;
+  margin: 15px 0;
+  font-size: 24px;
+}
+
+p {
+  color: #87546a;
+  line-height: 1.9;
+  font-size: 16px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+button {
+  border: none;
+  padding: 13px 25px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#yes {
+  background: #ff72a4;
+  color: white;
+}
+
+#no {
+  background: #ffe0eb;
+  color: #e85d8d;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+#result {
+  display: none;
+  margin-top: 20px;
+  color: #ff4f91;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.8;
+}
+
+.heart {
+  position: fixed;
+  bottom: -30px;
+  animation: float 6s linear infinite;
+  opacity: 0.7;
+  z-index: 1;
+}
+
+@keyframes float {
+  to {
+    transform: translateY(-110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+  <div class="cat">🐱</div>
+
+  <h2>မောင့် ခလေးလေး 💗</h2>
+
+  <p>
+    စိတ်မဆိုးတော့ပါနဲ့နော်<br>
+    တကယ်တောင်းပန်ပါတယ်မမရေ😭🌷
+    <br><br>
+    မောင့်ကို ခွင့်လွှတ်ပေးပါနော်။
+    မမ စိတ်ညစ်နေတာကိုလည်း မောင်မလိုချင်ဘူး။
+    <br><br>
+    မောင့်ကို ပြန်ပြုံးပြပေးပါဦးနော် 🥺💕
+  </p>
+
+  <div class="buttons">
+    <button id="yes" onclick="forgive()">
+      ခွင့်လွှတ်တယ် 💗
+    </button>
+
+    <button id="no" onclick="tryAgain()">
+      ဟင့်အင်း 🙄
+    </button>
+  </div>
+
+  <div id="result"></div>
+
+</div>
+
+<script>
+let messages = [
+  "ဟင့်... မောင် တကယ်တောင်းပန်ပါတယ်နော် 🥺",
+  "မမရေ နောက်တစ်ခါ ထပ်စဉ်းစားပေးပါဦး 😭",
+  "မောင့်ကို ခွင့်လွှတ်ပေးရင် အရမ်းဝမ်းသာမှာပါ 💗",
+  "Please မမရေ 🌷🐱"
+];
+
+let count = 0;
+
+function tryAgain() {
+  document.getElementById("result").style.display = "block";
+  document.getElementById("result").innerText =
+    messages[count % messages.length];
+  count++;
+}
+
+function forgive() {
+  document.querySelector(".cat").innerText = "😻";
+  document.querySelector("h2").innerText = "Yayyy! 💗";
+  document.querySelector("p").innerText =
+    "မောင် အရမ်းဝမ်းသာသွားပြီ 😭💕\n" +
+    "မမလေးကို ကျေးဇူးအများကြီးတင်ပါတယ်။\n" +
+    "အမြဲတမ်း ပျော်ပျော်ရွှင်ရွှင်လေး နေကြမယ်နော် 🌷";
+  document.querySelector(".buttons").style.display = "none";
+
+  document.getElementById("result").style.display = "block";
+  document.getElementById("result").innerText =
+    "LOVE YOU 💗🐱💗";
+  
+  for(let i = 0; i < 25; i++) {
+    createHeart();
+  }
+}
+
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerText = ["💗","💕","🌷","❤️","🐱"][
+    Math.floor(Math.random()*5)
+  ];
+  heart.style.left = Math.random()*100 + "vw";
+  heart.style.fontSize = (20 + Math.random()*20) + "px";
+  heart.style.animationDuration = (3 + Math.random()*4) + "s";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 7000);
+}
+
+setInterval(createHeart, 700);
+</script>
+
+</body>
+</html>
